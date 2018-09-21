@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import io from "socket.io-client"
 
+// import NavBar from "../NavBar";
+
+
 const socketUrl = "http://192.168.0.104:4000/"
 
 class Layout extends Component {
@@ -28,7 +31,6 @@ class Layout extends Component {
   render(){
     return (
       <div>
-        Layout Container
       </div>
     );
   }

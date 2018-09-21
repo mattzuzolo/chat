@@ -1,0 +1,30 @@
+{
+  "name": "chat",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-scripts": "1.1.5",
+    "socket.io": "^2.1.1",
+    "uuid": "^3.3.2"
+  },
+  "scripts": {
+    "start-both": "concurrently 'npm run react' 'npm run start-watch'",
+    "start": "react-scripts start",
+    "start-once": "node src/server/server.js",
+    "start-watch": "nodemon src/server/server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "nodemon": "^1.18.4"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

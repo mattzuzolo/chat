@@ -62,18 +62,27 @@ class ChatContainer extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let messageBody = {
-      user: this.state.user,
+      user: this.props.loggedInUser,
       text: this.state.messageDraft
     }
-    socket.emit("createMessage", messageBody, (callbackAcknowledgement) => {
-      console.log(callbackAcknowledgement)
-    });
+    //only allow logged in user to send messages
+    if(this.props.loggedInUser){
+      socket.emit("createMessage", messageBody, (callbackAcknowledgement) => {
+        console.log(callbackAcknowledgement)
+      });
+      //adds messages to feed created by local user. Also resets input bar
+      this.setState({
+        messageDraft: "",
+        conversationHistory: [...this.state.conversationHistory, messageBody],
+      })
+    } else {
+      alert("YOU MUST BE LOGGED IN TO SEND A MESSAGE")
+      return this.props.history.push("/register")
+    }
 
-    //adds messages to feed created by local user. Also resets input bar
-    this.setState({
-      messageDraft: "",
-      conversationHistory: [...this.state.conversationHistory, messageBody],
-    })
+
+
+
   }
 
 

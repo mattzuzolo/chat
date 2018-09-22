@@ -7,6 +7,7 @@ class NewChat extends Component {
   }
 
   render(){
+    console.log("NEW CHAT PROPS", this.props)
     return(
       <div className="container div--new-chat">
         <h1>Create a new chat!</h1>

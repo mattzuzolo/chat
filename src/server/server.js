@@ -7,6 +7,8 @@ const socketIO = require("socket.io");
 
 //local js files
 const { logSocket } = require("./socketManager")
+const { addTimestamp } = require("./utils/addTimestamp");
+
 
 //configure server and sockets
 const PORT = process.env.PORT || 4000;
@@ -24,17 +26,14 @@ io.on("connection", (socket) => {
 
   socket.on("join", (callback) => {
     console.log("Join occured successfully")
-    socket.emit("newMessage", {user: "Admin", message: "Welcome to the app. This was sent from the backend"});
+    socket.emit("newMessage", addTimestamp({user: "Admin", message: "Welcome to the app. This was sent from the backend"}));
     callback();
   })
 
 
   socket.on("createMessage", (message, callback) => {
     console.log("backend createMessage:", message)
-      socket.broadcast.emit("newMessage", {
-        ...message,
-        createdAt: new Date().getTime()
-      });
+      socket.broadcast.emit("newMessage", addTimestamp(message));
       // io.emit("newMessage", {
       //   ...message,
       //   createdAt: new Date().getTime()

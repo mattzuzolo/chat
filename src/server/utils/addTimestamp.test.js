@@ -1,6 +1,6 @@
 let expect = require("expect");
 
-let { addTimestamp } = require("./addTimestamp");
+const { addTimestamp } = require("./addTimestamp");
 
 describe("addTimestamp", () => {
   it("should add a timestamp to the message object", () => {

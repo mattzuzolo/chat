@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import io from "socket.io-client";
 import moment from "moment";
 
-
 //React components
 import Feed from "./Feed"
 import ConversationList from "./ConversationList"
@@ -18,26 +17,17 @@ class ChatContainer extends Component {
 
     this.state = {
       socket: null,
-      user: "the ghost of react",
+      user: "user",
       messageDraft: "",
-      conversationHistory: [{
-        user: "Matt",
-        text: "Message #1",
-      },{
-        user: "Marc",
-        text: "Message #2",
-      },{
-        user: "Matt",
-        text: "Message #3",
-      }],
+      conversationHistory: [],
     };
   }
 
   componentDidMount = () => {
     this.initSocket();
 
+    //listens for a new message. Adds new messages to conversationHistory state to update feed
     socket.on("newMessage", (message) => {
-      console.log("newMessage received:", message)
       this.setState({
         conversationHistory: [...this.state.conversationHistory, message],
       })
@@ -51,12 +41,7 @@ class ChatContainer extends Component {
 
   initSocket = () => {
       socket.on("connect", () => {
-        console.log("react connected");
-        //
-        // socket.emit("createMessage", {
-        //   from: "Matt",
-        //   text: "Send from Matt in react"
-        // });
+
         socket.emit("join", (error) => {
           if(error){
             alert(error);
@@ -65,6 +50,7 @@ class ChatContainer extends Component {
             console.log("Successful join with no error")
           }
         })
+
       })
       this.setState({socket})
   }
@@ -83,16 +69,15 @@ class ChatContainer extends Component {
       console.log(callbackAcknowledgement)
     });
 
+    //adds messages to feed created by local user. Also resets input bar
     this.setState({
       messageDraft: "",
       conversationHistory: [...this.state.conversationHistory, messageBody],
     })
-
   }
 
 
   render(){
-    // console.log("conversationHistory at render", this.state.conversationHistory)
     return (
       <div className="container div--chat-container">
         <div className="left-column">

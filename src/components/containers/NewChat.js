@@ -4,7 +4,6 @@ class NewChat extends Component {
 
   handleFormSubmit = (event) => {
     event.preventDefault()
-    
   }
 
   render(){

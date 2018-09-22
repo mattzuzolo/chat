@@ -3,6 +3,7 @@ import io from "socket.io-client";
 
 //React components
 import Feed from "./Feed"
+import ConversationList from "./ConversationList"
 import MessageBar from "../MessageBar"
 
 //Socket configuration
@@ -82,6 +83,7 @@ class ChatContainer extends Component {
     console.log("conversationHistory at render", this.state.conversationHistory)
     return (
       <div>
+        <ConversationList />
         <Feed conversationHistory={this.state.conversationHistory}/>
         <MessageBar
           onInputChange={this.onInputChange}

@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 
+import ConversationItem from "../ConversationItem"
+
 class ConversationList extends Component {
   render(){
     return(
-      <div>
+      <div className="container div--conversation-list">
         ConversationList
+        <ConversationItem />
       </div>
     );
   }

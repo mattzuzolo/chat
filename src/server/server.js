@@ -7,6 +7,7 @@ const bodyParser = require("body-parser")
 const { ObjectID } = require("mongodb");
 const { mongoose } = require("./db/mongoose");
 const socketIO = require("socket.io");
+const cors = require("cors");
 
 //local js files
 const { addTimestamp } = require("./utils/addTimestamp");
@@ -25,6 +26,7 @@ let io = socketIO(server);
 module.exports = { io }
 
 //configure middleware
+app.use(cors());
 app.use(bodyParser.json());
 routes(app);
 app.use((error, request, response, next) => {

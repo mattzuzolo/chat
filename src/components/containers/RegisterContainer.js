@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+
 class RegisterContainer extends Component {
   constructor(props){
     super(props);
@@ -12,7 +14,6 @@ class RegisterContainer extends Component {
   onCurrentUsernameChange = (event) => {
     this.setState({currentUsername: event.target.value})
   }
-
 
   render(){
     return(

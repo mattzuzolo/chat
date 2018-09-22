@@ -10,6 +10,7 @@ import NewChat from "./components/containers/NewChat"
 import AboutContainer from "./components/containers/AboutContainer";
 import RegisterContainer from "./components/containers/RegisterContainer";
 
+const userUrl = "http://localhost:4000/users";
 
 class App extends Component {
   constructor(props){
@@ -23,7 +24,24 @@ class App extends Component {
   handleRegisterSubmit = (event, loggedInUser) => {
     event.preventDefault()
     this.setState({loggedInUser})
-    this.props.history.push("/feed")
+    this.postNewUser(loggedInUser)
+      .catch(console.error)
+    this.props.history.push("/login")
+  }
+
+
+  postNewUser = (username) => {
+    const userPostConfig = {
+      Accept: "application/json",
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({username})
+    };
+    console.log("URL TO FETCH", userUrl);
+    console.log("POSTCONFIG TO FETCH", userPostConfig);
+    return fetch(userUrl, userPostConfig)
   }
 
   render() {

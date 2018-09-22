@@ -1,4 +1,4 @@
-let expect = require("expect");
+const expect = require("expect");
 
 const { addTimestamp } = require("./addTimestamp");
 

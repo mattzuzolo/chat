@@ -25,6 +25,7 @@ let io = socketIO(server);
 module.exports = { io }
 
 //configure middleware
+app.use(bodyParser.json());
 routes(app);
 app.use((error, request, response, next) => {
   response.status(422).send({ error: error.message });

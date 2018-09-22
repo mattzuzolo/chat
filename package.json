@@ -20,7 +20,8 @@
     "start-once": "node src/server/server.js",
     "start-watch": "nodemon src/server/server.js",
     "test-mocha": "mocha src/server/**/*.test.js",
-    "mocha-watch": "nodemon --exec 'npm start-watch'",
+    "test-mocha-api": "mocha src/server/test/**/*.test.js",
+    "mocha-watch": "NODE_ENV=test nodemon --exec 'mocha src/server/**/*.test.js'",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -32,7 +33,8 @@
     "concurrently": "^4.0.1",
     "expect": "^1.20.2",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0"
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",

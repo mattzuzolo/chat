@@ -19,18 +19,17 @@ class ChatContainer extends Component {
       socket: null,
       user: null,
     };
-
-    // socket.on("newMessage", (message) => {
-    //   console.log("newMessage received!!!", message)
-    // })
-
-
   }
 
   componentDidMount = () => {
     this.initSocket();
     socket.on("newMessage", (message) => {
       console.log("newMessage received!!!", message)
+    })
+
+    socket.on("disconnect", () => {
+      console.log("react disconnected");
+      this.setState({socket:null})
     })
   }
 
@@ -49,23 +48,24 @@ class ChatContainer extends Component {
       this.setState({socket})
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Form has been submitted")
+    socket.emit("createMessage", {
+      user: "react user",
+      text: 'socket.emit"createMessage" from react front end'
+    }, (callbackAcknowledgement) => {
+      console.log(callbackAcknowledgement)
+    });
+  }
+
 
   render(){
     console.log("***render occurred***")
-
-    socket.on("disconnect", () => {
-      console.log("react disconnected");
-      this.setState({socket:null})
-    })
-
-    // socket.on("newMessage", (message) => {
-    //   console.log("newMessage received!!!", message)
-    // })
-
     return (
       <div>
         <Feed />
-        <MessageBar />
+        <MessageBar createMessage={this.handleSubmit}/>
       </div>
     );
   }

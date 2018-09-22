@@ -35,7 +35,10 @@ class ChatContainer extends Component {
     this.initSocket();
 
     socket.on("newMessage", (message) => {
-      console.log("newMessage received", message)
+      console.log("newMessage received:", message)
+      this.setState({
+        conversationHistory: [...this.state.conversationHistory, message],
+      })
     })
 
     socket.on("disconnect", () => {
@@ -47,6 +50,11 @@ class ChatContainer extends Component {
   initSocket = () => {
       socket.on("connect", () => {
         console.log("react connected");
+        //
+        // socket.emit("createMessage", {
+        //   from: "Matt",
+        //   text: "Send from Matt in react"
+        // });
         socket.emit("join", (error) => {
           if(error){
             alert(error);
@@ -72,21 +80,23 @@ class ChatContainer extends Component {
     socket.emit("createMessage", messageBody, (callbackAcknowledgement) => {
       console.log(callbackAcknowledgement)
     });
+
     this.setState({
       messageDraft: "",
       conversationHistory: [...this.state.conversationHistory, messageBody],
     })
+
   }
 
 
   render(){
-    console.log("conversationHistory at render", this.state.conversationHistory)
+    // console.log("conversationHistory at render", this.state.conversationHistory)
     return (
       <div className="container div--chat-container">
         <div className="left-column">
           <ConversationList />
         </div>
-        
+
         <div className="right-column">
           <Feed conversationHistory={this.state.conversationHistory}/>
           <MessageBar

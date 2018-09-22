@@ -6,7 +6,6 @@ const express = require("express");
 const socketIO = require("socket.io");
 
 //local js files
-//db files
 const { logSocket } = require("./socketManager")
 
 //configure server and sockets
@@ -17,18 +16,29 @@ let io = socketIO(server);
 module.exports = { io }
 
 //Socket listeners
+//socket goes to single connection
+//io.emit goes to all
+
 io.on("connection", (socket) => {
   console.log("connected at", socket.id)
 
   socket.on("join", (callback) => {
     console.log("Join occured successfully")
-    socket.emit("newMessage", {user: "Admin", message: "Welcome to the app"});
+    socket.emit("newMessage", {user: "Admin", message: "Welcome to the app. This was sent from the backend"});
     callback();
   })
 
+
   socket.on("createMessage", (message, callback) => {
-    console.log("backend createMessage", message)
-      io.emit("newMessage", { user: "io.emit user", message: "createMessage emission"});
+    console.log("backend createMessage:", message)
+      socket.broadcast.emit("newMessage", {
+        ...message,
+        createdAt: new Date().getTime()
+      });
+      // io.emit("newMessage", {
+      //   ...message,
+      //   createdAt: new Date().getTime()
+      // });
     callback("server acknowledgement");
   });
 

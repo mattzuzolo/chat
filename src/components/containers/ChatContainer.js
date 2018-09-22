@@ -82,14 +82,20 @@ class ChatContainer extends Component {
   render(){
     console.log("conversationHistory at render", this.state.conversationHistory)
     return (
-      <div>
-        <ConversationList />
-        <Feed conversationHistory={this.state.conversationHistory}/>
-        <MessageBar
-          onInputChange={this.onInputChange}
-          messageDraft={this.state.messageDraft}
-          createMessage={this.handleSubmit}
-        />
+      <div className="container div--chat-container">
+        <div className="left-column">
+          <ConversationList />
+        </div>
+        
+        <div className="right-column">
+          <Feed conversationHistory={this.state.conversationHistory}/>
+          <MessageBar
+            onInputChange={this.onInputChange}
+            messageDraft={this.state.messageDraft}
+            createMessage={this.handleSubmit}
+          />
+        </div>
+
       </div>
     );
   }

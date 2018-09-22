@@ -7,9 +7,6 @@ const socketIO = require("socket.io");
 
 //local js files
 //db files
-const { mongoose } = require("./db/mongoose");
-
-
 const { logSocket } = require("./socketManager")
 
 //configure server and sockets

@@ -9,10 +9,11 @@ const { mongoose } = require("./db/mongoose");
 const socketIO = require("socket.io");
 
 //local js files
-const { logSocket } = require("./socketManager")
 const { addTimestamp } = require("./utils/addTimestamp");
+const { logSocket } = require("./socketManager")
 
-//Database imports
+//API and database imports
+const routes = require("./routes/routes");
 const { User } = require("./models/user");
 const { Conversation } = require("./models/conversation");
 

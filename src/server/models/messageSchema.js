@@ -10,7 +10,7 @@ const MessageSchema = new Schema({
     type: String,
   },
   user: {
-    type: Schema.types.ObjectId,
+    type: Schema.ObjectId,
     ref: "user",
   },
   timestamp: {

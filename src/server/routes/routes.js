@@ -8,8 +8,8 @@ module.exports = (app) => {
   app.post("/users", UserController.create);
 
   //conversation endpoints
-  app.get("conversations", ConversationController.index);
-  app.get("conversations/:id", ConversationController.findConversationById);
-  app.post("conversations", ConversationController.create);
-  
+  // app.get("conversations", ConversationController.index);
+  // app.get("conversations/:id", ConversationController.findConversationById);
+  // app.post("conversations", ConversationController.create);
+  //
 }

@@ -5,7 +5,8 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 //Local imports
 import './App.css';
 import NavBar from "./components/NavBar"
-import ChatContainer from "./components/containers/ChatContainer"
+import ChatContainer from "./components/containers/ChatContainer";
+import NewChat from "./components/containers/NewChat"
 import AboutContainer from "./components/containers/AboutContainer";
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           {...routerProps} />}/>
           <Switch>
             <Route path="/feed" component={ChatContainer} />
+            <Route path="/new" component={NewChat} />
             <Route path="/about" component={AboutContainer} />
             {/*
             <Route path="/login" component={LoginContainer} />

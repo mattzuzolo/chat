@@ -66,7 +66,7 @@ class ChatContainer extends Component {
       text: this.state.messageDraft
     }
     //only allow logged in user to send messages
-    if(this.props.loggedInUser){
+    if(this.props.loggedInUser || !this.props.loggedInUser){
       socket.emit("createMessage", messageBody, (callbackAcknowledgement) => {
         console.log(callbackAcknowledgement)
       });

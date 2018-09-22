@@ -3,12 +3,18 @@ const http = require("http");
 
 //external libraries
 const express = require("express");
+const bodyParser = require("body-parser")
+const { ObjectID } = require("mongodb");
+const { mongoose } = require("./db/mongoose");
 const socketIO = require("socket.io");
 
 //local js files
 const { logSocket } = require("./socketManager")
 const { addTimestamp } = require("./utils/addTimestamp");
 
+//Database imports
+const { User } = require("./models/user");
+const { Conversation } = require("./models/conversation");
 
 //configure server and sockets
 const PORT = process.env.PORT || 4000;
@@ -16,6 +22,12 @@ let app = express();
 let server = http.createServer(app);
 let io = socketIO(server);
 module.exports = { io }
+
+//configure middleware
+routes(app);
+app.use((error, request, response, next) => {
+  response.status(422).send({ error: error.message });
+});
 
 //socket listeners
 io.on("connection", (socket) => {
@@ -42,3 +54,5 @@ io.on("connection", (socket) => {
 server.listen(PORT, () => {
   console.log(`Started on port ${PORT}.`);
 })
+
+module.exports = { app };

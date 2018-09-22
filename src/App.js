@@ -47,6 +47,8 @@ class App extends Component {
   handleLoginSubmit = (event, loggedInUser) => {
     event.preventDefault()
     this.loginUser(loggedInUser)
+    this.props.history.push("/feed")
+
   }
 
   loginUser = (username) => {
@@ -55,7 +57,7 @@ class App extends Component {
       .then(response => response.users)
       .then(users => users.find(user => user.username === username))
       .then(loggedInUser => this.setState({loggedInUser}))
-      .catch(console.log("THIS USER DOES NOT EXIST"))
+      .catch(alert("Failed login attempt"))
   }
 
   render() {
@@ -65,10 +67,13 @@ class App extends Component {
         <Route path="/" render={(routerProps) => <NavBar
           {...routerProps} />}/>
           <Switch>
+
             <Route path="/feed" render={(props) => <ChatContainer
               loggedInUser={this.state.loggedInUser} history={this.props.history} />}/>
+
             <Route path="/new" render={(props) => <NewChat
               loggedInUser={this.state.loggedInUser} />}/>
+
             <Route path="/about" component={AboutContainer} />
 
             <Route path="/login" render={(props) => <LoginContainer
@@ -79,9 +84,6 @@ class App extends Component {
               handleRegisterSubmit={this.handleRegisterSubmit}
             />}/>
 
-            {/*
-            <Route path="/me" component={LoginContainer} />
-            */}
           </Switch>
       </div>
     );

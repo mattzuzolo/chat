@@ -19,6 +19,7 @@ class ChatContainer extends Component {
       socket: null,
       user: "user",
       messageDraft: "",
+      currentConversation: {},
       conversationHistory: [],
     };
   }
@@ -90,11 +91,17 @@ class ChatContainer extends Component {
     return (
       <div className="container div--chat-container">
         <div className="left-column">
-          <ConversationList />
+          <ConversationList
+            loggedInUser={this.props.loggedInUser}
+            currentConversation={this.state.currentConversation}
+          />
         </div>
 
         <div className="right-column">
-          <Feed conversationHistory={this.state.conversationHistory}/>
+          <Feed
+            conversationHistory={this.state.conversationHistory}
+            loggedInUser={this.props.loggedInUser}
+          />
           <MessageBar
             onInputChange={this.onInputChange}
             messageDraft={this.state.messageDraft}

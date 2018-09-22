@@ -81,7 +81,11 @@ button {
   border-color: cyan;
   font-size: 3rem;
   height: 95vh;
+  overflow-y: scroll;
 }
+
+  .div--new-conversation{
+  }
 
 /* ——————————————————————— */
 /* ——————————————————————— */

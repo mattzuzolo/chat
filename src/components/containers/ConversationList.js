@@ -20,9 +20,7 @@ class ConversationList extends Component {
       .then(response => this.setState({conversationArray: response.conversations}))
   }
 
-  onConversationItemClick = (event, conversationObj) => {
-    console.log("You selected a new conversation", conversationObj)
-  }
+
 
   onConversationNameChange = (event) => {
     this.setState({currentConversationName: event.target.value})
@@ -67,7 +65,7 @@ class ConversationList extends Component {
           conversation={conversation}
           id={conversation._id}
           name={conversation.name}
-          onConversationItemClick={this.onConversationItemClick}
+          onConversationItemClick={this.props.onConversationItemClick}
           />
         ))}
 

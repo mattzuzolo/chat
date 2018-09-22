@@ -19,7 +19,7 @@ class ChatContainer extends Component {
       socket: null,
       user: "user",
       messageDraft: "",
-      currentConversation: {},
+      currentConversation: {messages: ["Hi"]},
       conversationHistory: [],
     };
   }
@@ -81,19 +81,24 @@ class ChatContainer extends Component {
       return this.props.history.push("/register")
     }
 
+  }
 
-
-
+  onConversationItemClick = (event, currentConversation) => {
+    this.setState({currentConversation})
   }
 
 
+
   render(){
+    console.log("Current conversation in ChatContainer", this.state.currentConversation)
+
     return (
       <div className="container div--chat-container">
         <div className="left-column">
           <ConversationList
             loggedInUser={this.props.loggedInUser}
             currentConversation={this.state.currentConversation}
+            onConversationItemClick={this.onConversationItemClick}
           />
         </div>
 
@@ -101,6 +106,7 @@ class ChatContainer extends Component {
           <Feed
             conversationHistory={this.state.conversationHistory}
             loggedInUser={this.props.loggedInUser}
+            currentConversation={this.state.currentConversation}
           />
           <MessageBar
             onInputChange={this.onInputChange}

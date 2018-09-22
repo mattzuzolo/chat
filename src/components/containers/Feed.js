@@ -3,19 +3,34 @@ import FeedItem from "../FeedItem"
 
 class Feed extends Component {
   render(){
+    console.log("feed", this.props.currentConversation)
     return(
       <div className="container div--feed">
-        Feed
-        {this.props.conversationHistory.map(message => (
-          <FeedItem
-            message={message}
-            user={message.user}
-            text={message.text}
-          />
-      ))}
+        { this.props.currentConversation
+                        ? this.props.currentConversation.messages.map(message => (
+                          <FeedItem
+                            message={message}
+                            id={message._id}
+                            user={message.user}
+                            text={message.text}
+                          />
+                        ))
+                        : null
+        }
+
       </div>
     )
   }
 }
 
 export default Feed;
+
+
+
+// {this.props.currentConversation.messages.map(message => (
+//   <FeedItem
+//     message={message}
+//     user={message.user}
+//     text={message.text}
+//   />
+// ))}

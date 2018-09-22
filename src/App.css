@@ -6,6 +6,59 @@ body {
   margin: 7.5%;
 }
 
+input {
+  height: 3.5rem;
+  font-size:2rem;
+  border-radius: 1rem;
+  border-color: black;
+  padding-left: 1rem;
+}
+
+button {
+  height: 3.5rem;
+  font-size:2rem;
+  margin: 1.5rem;
+  background: transparent;
+  border-radius: 1rem;
+  border-color: black;
+}
+
+
+/* ——————————————————————— */
+/* ——————————————————————— */
+/* FEED STYLING */
+/* ——————————————————————— */
+/* ——————————————————————— */
+
+.div--feed {
+  border-style: solid;
+  border-color: green;
+  font-size: 3rem;
+}
+
+/* ——————————————————————— */
+/* ——————————————————————— */
+/* FEED STYLING */
+/* ——————————————————————— */
+/* ——————————————————————— */
+
+.div--conversation-list{
+  border-style: solid;
+  border-color: cyan;
+  font-size: 3rem;
+}
+
+/* ——————————————————————— */
+/* ——————————————————————— */
+/* MessageBar STYLING */
+/* ——————————————————————— */
+/* ——————————————————————— */
+
+.div--message-bar {
+    border-style: solid;
+    border-color: red;
+}
+
 
 /* ——————————————————————— */
 /* ——————————————————————— */

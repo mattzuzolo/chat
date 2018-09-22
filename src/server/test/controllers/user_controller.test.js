@@ -40,6 +40,8 @@ describe("User controller", () => {
         .expect(200)
         .expect((response) => {
           expect(response.body.users.length).toBe(count)
+          expect(response.body.users[0].username).toBe(username)
+
         })
         .end(done);
     })

@@ -16,10 +16,10 @@ class RegisterContainer extends Component {
   render(){
     return(
       <div className="container div--new-chat">
-        <h1>Create an account</h1>
-        <form onSubmit={(event) => this.props.handleRegisterSubmit(event, this.state.currentUsername)}>
+        <h1>Login</h1>
+        <form onSubmit={(event) => this.props.handleLoginSubmit(event, this.state.currentUsername)}>
           <input
-            placeholder="Create a username"
+            placeholder="Login"
             value={this.state.currentUsername}
             onChange={this.onCurrentUsernameChange}
           >

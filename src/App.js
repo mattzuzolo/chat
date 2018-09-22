@@ -9,6 +9,8 @@ import ChatContainer from "./components/containers/ChatContainer";
 import NewChat from "./components/containers/NewChat"
 import AboutContainer from "./components/containers/AboutContainer";
 import RegisterContainer from "./components/containers/RegisterContainer";
+import LoginContainer from "./components/containers/LoginContainer";
+
 
 const userUrl = "http://localhost:4000/users";
 
@@ -21,14 +23,12 @@ class App extends Component {
     }
   }
 
-  handleRegisterSubmit = (event, loggedInUser) => {
+  handleRegisterSubmit = (event, newUser) => {
     event.preventDefault()
-    this.setState({loggedInUser})
-    this.postNewUser(loggedInUser)
+    this.postNewUser(newUser)
       .catch(console.error)
     this.props.history.push("/login")
   }
-
 
   postNewUser = (username) => {
     const userPostConfig = {
@@ -44,6 +44,20 @@ class App extends Component {
     return fetch(userUrl, userPostConfig)
   }
 
+  handleLoginSubmit = (event, loggedInUser) => {
+    event.preventDefault()
+    this.loginUser(loggedInUser)
+  }
+
+  loginUser = (username) => {
+    fetch(userUrl)
+      .then(response => response.json())
+      .then(response => response.users)
+      .then(users => users.find(user => user.username === username))
+      .then(loggedInUser => this.setState({loggedInUser}))
+      .catch(console.log("THIS USER DOES NOT EXIST"))
+  }
+
   render() {
     console.log("CURRENT LOGGED IN USER:", this.state.loggedInUser)
     return (
@@ -56,13 +70,16 @@ class App extends Component {
             <Route path="/new" render={(props) => <NewChat
               loggedInUser={this.state.loggedInUser} />}/>
             <Route path="/about" component={AboutContainer} />
+
+            <Route path="/login" render={(props) => <LoginContainer
+              handleLoginSubmit={this.handleLoginSubmit}
+            />}/>
+
             <Route path="/register" render={(props) => <RegisterContainer
               handleRegisterSubmit={this.handleRegisterSubmit}
-              loggedInUser={this.state.loggedInUser} />}
-            />
+            />}/>
+
             {/*
-              <Route path="/feed" component={ChatContainer} />
-            <Route path="/login" component={LoginContainer} />
             <Route path="/me" component={LoginContainer} />
             */}
           </Switch>

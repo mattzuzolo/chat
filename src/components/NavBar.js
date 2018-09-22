@@ -9,7 +9,7 @@ class NavBar extends Component {
         <Link className="nav-item div--nav-bar-item" to="/new">New Chat</Link>
         <Link className="nav-item div--nav-bar-item nav-right" to="/about">About</Link>
         <Link className="nav-item div--nav-bar-item nav-right" to="/register">Register</Link>
-
+        <Link className="nav-item div--nav-bar-item nav-right" to="/login">Login</Link>
       </div>
     )
   }

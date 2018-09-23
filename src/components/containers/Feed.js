@@ -9,7 +9,7 @@ class Feed extends Component {
                         ? this.props.currentConversation.messages.map(message => (
                           <FeedItem
                             message={message}
-                            id={message._id}
+                            key={message._id}
                             user={message.user}
                             text={message.text}
                           />
@@ -22,13 +22,3 @@ class Feed extends Component {
 }
 
 export default Feed;
-
-
-
-// {this.props.currentConversation.messages.map(message => (
-//   <FeedItem
-//     message={message}
-//     user={message.user}
-//     text={message.text}
-//   />
-// ))}

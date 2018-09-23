@@ -63,7 +63,7 @@ class ConversationList extends Component {
         {this.state.conversationArray.map(conversation => (
           <ConversationItem
           conversation={conversation}
-          id={conversation._id}
+          key={conversation._id}
           name={conversation.name}
           onConversationItemClick={this.props.onConversationItemClick}
           />

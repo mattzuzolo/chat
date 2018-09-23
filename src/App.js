@@ -39,15 +39,14 @@ class App extends Component {
       },
       body: JSON.stringify({username})
     };
-    console.log("URL TO FETCH", userUrl);
-    console.log("POSTCONFIG TO FETCH", userPostConfig);
+
     return fetch(userUrl, userPostConfig)
   }
 
   handleLoginSubmit = (event, loggedInUser) => {
     event.preventDefault()
     this.loginUser(loggedInUser)
-    this.props.history.push("/feed")
+    // this.props.history.push("/feed")
 
   }
 
@@ -57,7 +56,6 @@ class App extends Component {
       .then(response => response.users)
       .then(users => users.find(user => user.username === username))
       .then(loggedInUser => this.setState({loggedInUser}))
-      .catch(alert("Failed login attempt"))
   }
 
   render() {

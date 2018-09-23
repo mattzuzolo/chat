@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
-import moment from "moment";
 
 //React components
 import Feed from "./Feed"
@@ -11,6 +10,8 @@ import MessageBar from "../MessageBar"
 const socketUrl = "http://192.168.0.104:4000/"
 let socket = io(socketUrl);
 
+const conversationUrl = "http://localhost:4000/conversations"
+
 class ChatContainer extends Component {
   constructor(props){
     super(props);
@@ -19,7 +20,7 @@ class ChatContainer extends Component {
       socket: null,
       user: "user",
       messageDraft: "",
-      currentConversation: {messages: ["Hi"]},
+      currentConversation: null,
       conversationHistory: [],
     };
   }
@@ -63,11 +64,11 @@ class ChatContainer extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let messageBody = {
-      user: this.props.loggedInUser,
+      user: this.props.loggedInUser.username,
       text: this.state.messageDraft
     }
+    console.log("MESSAGE BODY ON SUBMIT", messageBody)
     //only allow logged in user to send messages
-    if(this.props.loggedInUser || !this.props.loggedInUser){
       socket.emit("createMessage", messageBody, (callbackAcknowledgement) => {
         console.log(callbackAcknowledgement)
       });
@@ -76,10 +77,7 @@ class ChatContainer extends Component {
         messageDraft: "",
         conversationHistory: [...this.state.conversationHistory, messageBody],
       })
-    } else {
-      alert("YOU MUST BE LOGGED IN TO SEND A MESSAGE")
-      return this.props.history.push("/register")
-    }
+
 
   }
 
@@ -90,7 +88,7 @@ class ChatContainer extends Component {
 
 
   render(){
-
+    console.log("Current conversation", this.state.currentConversation)
     return (
       <div className="container div--chat-container">
         <div className="left-column">

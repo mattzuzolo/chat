@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 //Require other models/schemas
 const UserSchema = require("./user");
-const MessageSchema = require("./messageSchema");
+const { MessageSchema } = require("./messageSchema");
 
 const ConversationSchema = new Schema({
   name: {

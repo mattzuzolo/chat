@@ -90,7 +90,6 @@ class ChatContainer extends Component {
 
 
   render(){
-    console.log("Current conversation in ChatContainer", this.state.currentConversation)
 
     return (
       <div className="container div--chat-container">

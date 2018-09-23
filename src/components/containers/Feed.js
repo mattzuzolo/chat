@@ -3,7 +3,6 @@ import FeedItem from "../FeedItem"
 
 class Feed extends Component {
   render(){
-    console.log("feed", this.props.currentConversation)
     return(
       <div className="container div--feed">
         { this.props.currentConversation
@@ -17,7 +16,6 @@ class Feed extends Component {
                         ))
                         : null
         }
-
       </div>
     )
   }

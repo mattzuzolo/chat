@@ -10,10 +10,8 @@ module.exports = {
 
   create(request, response, next){
     let body = (({username}) => ({username}))(request.body);
-    console.log("\n\nREQUEST BODY", body);
 
     let user = new User(body);
-    console.log("\n\nREQUEST NEW USER", user);
     user.save()
       .then((doc) => response.send(doc))
       .catch(next);

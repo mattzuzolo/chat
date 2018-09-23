@@ -16,7 +16,6 @@ describe("User controller", () => {
         .send({username})
         // .expect(200)
         .expect((response) => {
-          console.log("\n\nRESPONSE:", response.body)
           expect(response.body.username).toBe(username);
         })
         .end((error,response) => {

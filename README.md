@@ -2,7 +2,7 @@
 
 Chat with friends and strangers in real-time.
 
-//[See the live demo here](#)
+Live demo coming soon
 
 ## Technology
 
